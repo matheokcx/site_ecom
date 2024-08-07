@@ -23,7 +23,7 @@ export default async function handle(req, res) {
             const soldeClient = rechercheSoldeClient[0].solde
 
             for (let i = 0; i < produits.length; i++) {
-                const [prixProduit] = await bdd.query('SELECT prix as p FROM produit WHERE nom = ?', [produits[i]])
+                const [prixProduit] = await bdd.query('SELECT prix as p FROM produit WHERE nom = ?', [produits[i].nom])
                 sommeCommande += prixProduit[0].p
             }
 
@@ -32,7 +32,7 @@ export default async function handle(req, res) {
 
                 // Sauvegarde des produits commandés
                 for (let i = 0; i < produits.length; i++) {
-                    const [infosProduit] = await bdd.query('SELECT idProduit as idp FROM produit WHERE nom = ?', [produits[i]])
+                    const [infosProduit] = await bdd.query('SELECT idProduit as idp FROM produit WHERE nom = ?', [produits[i].nom])
                     const idProd = infosProduit[0].idp
 
                     const [identifiantDernierProduitCommande] = await bdd.query("SELECT max(idProduitCommande) AS dernier FROM produitCommande")

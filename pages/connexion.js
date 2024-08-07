@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import Head from 'next/head'
 
 // Possibilité de spécifier le champ exact de l'erreur ou si on a pas de compte
 export default function connexion() {
@@ -32,6 +33,10 @@ export default function connexion() {
 
     return (
         <>
+            <Head>
+                <title>CyberNet - Connexion au compte</title>
+                <link rel='icon' href='/logo.png' />
+            </Head>
             <div className='w-screen h-screen bg-blue-600 font-sans flex justify-center items-center'>
                 <div className='w-1/3 h-2/3 bg-white text-black rounded-lg flex flex-col items-center justify-center gap-12 p-4'>
                     <h2 className='font-bold text-2xl'>Connectez-vous</h2>

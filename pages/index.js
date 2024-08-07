@@ -11,8 +11,10 @@ export default function Home() {
   const [articleCherche, setArticleCherche] = useState("")
 
   const [produits, setProduits] = useState([])
+
   const [panier, setPanier] = useState([])
   const [panierVisible, setPanierVisible] = useState(false)
+  const [montantPanier, setMontantPanier] = useState(0)
 
   const [prixMinimum, setPrixMinimum] = useState(0)
   const [prixMaximum, setPrixMaximum] = useState(9999)
@@ -74,14 +76,20 @@ export default function Home() {
     chargerProduits()
   }, [])
 
+  useEffect(() => {
+    if (panier.length != 0) {
+      setMontantPanier(montantPanier + panier[panier.length - 1].prix)
+    }
+  }, [panier])
+
   return (
     <>
       <Head>
-        <title>Boutique en ligne</title>
+        <title>CyberNet - Accueil</title>
       </Head>
       <div className='w-screen h-screen flex flex-col font-sans bg-white'>
-        <TopBar panier={panier} articleCherche={articleCherche} setArticleCherche={setArticleCherche} faireRecherche={faireChercher} panierVisible={panierVisible} setPanierVisible={setPanierVisible} />
-        {panierVisible ? <Panier liste={panier} passerCommande={passerCommande} /> : null}
+        <TopBar userMail={userMail} panier={panier} articleCherche={articleCherche} setArticleCherche={setArticleCherche} faireRecherche={faireChercher} panierVisible={panierVisible} setPanierVisible={setPanierVisible} />
+        {panierVisible ? <Panier liste={panier} passerCommande={passerCommande} montantPanier={montantPanier} setMontantPanier={setMontantPanier} /> : null}
         <div className='h-5/6 w-full flex flex-row'>
           <div className='w-1/6 h-5/6 flex flex-col bg-blue-600 rounded-lg p-4 pt-4 mt-5 ml-2 gap-4'>
             <h3 className='w-full text-center'><strong>Filtres</strong></h3>
@@ -99,7 +107,7 @@ export default function Home() {
             </span>
           </div>
           <div className='w-5/6 h-full flex flex-row flex-wrap gap-3 pl-5 pt-5'>
-            {produits.map((e, index) => <Produit key={index} panier={panier} setPanier={setPanier} nomProduit={e.nom} cheminPhotoProduit={e.path} prixProduit={e.prix} />)}
+            {produits.map((e, index) => <Produit element={e} key={index} panier={panier} setPanier={setPanier} />)}
           </div>
         </div>
       </div>
