@@ -13,15 +13,17 @@ export default async function handle(req, res) {
             const { recherche } = req.query
             const articleCherche = `%${recherche}%`;
 
-            const [rows] = await bdd.query("SELECT nom, imagePath, prix FROM produit WHERE nom LIKE ? ", [articleCherche])
+            if (recherche !== "") {
+                const [rows] = await bdd.query("SELECT nom, imagePath, prix FROM produit WHERE nom LIKE ? ", [articleCherche])
 
-            const produits = rows.map((row, index) => ({
-                "nom": row.nom,
-                "path": row.imagePath,
-                "prix": row.prix
-            }))
+                const produits = rows.map((row, index) => ({
+                    "nom": row.nom,
+                    "path": row.imagePath,
+                    "prix": row.prix
+                }))
 
-            res.status(200).send(produits)
+                res.status(200).send(produits)
+            }
         }
         catch (e) {
             res.status(500).send(e)

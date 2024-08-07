@@ -1,17 +1,19 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import TopBar from '../components/TopBar'
 import Panier from '../components/Panier'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 export default function profilClient() {
 
-    const [panierVisible, setPanierVisible] = useState(false)
     const routeur = useRouter()
     const liste = routeur.query.liste
-    const [clientMail, setClientMail] = useState(routeur.query.userMail)
 
+    const [panierVisible, setPanierVisible] = useState(false)
+
+    const [commandes, setCommandes] = useState([])
+
+    const [clientMail, setClientMail] = useState(routeur.query.userMail)
     const [newMail, setNewMail] = useState("")
     const [currentPassword, setCurrentPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
@@ -44,6 +46,22 @@ export default function profilClient() {
         }
     }
 
+    const afficherCommandes = async () => {
+        const requete = await fetch(`/api/affichageCommande?mail=${clientMail}`)
+        if (!requete.ok) {
+            const retour = await requete.json()
+            alert(retour.message)
+        }
+        else {
+            const retour = await requete.json()
+            setCommandes(retour)
+        }
+    }
+
+    useEffect(() => {
+        afficherCommandes()
+    }, [commandes])
+
     return (
         <>
             <Head>
@@ -54,6 +72,12 @@ export default function profilClient() {
                 <TopBar panier={liste} panierVisible={panierVisible} setPanierVisible={setPanierVisible} userMail={clientMail} />
                 {panierVisible ? <Panier liste={liste} /> : null}
                 <div className='w-2/3 h-2/3 overflow-y-auto rounded-xl bg-gray-200 flex flex-col gap-8 p-3 justify-center items-center text-black font-sans mt-10'>
+                    <div className='w-full h-1/3 overflow-y-auto'>
+                        <h2 className='font-bold text-black'><u>Commandes : </u></h2>
+                        <ul>
+                            {commandes.map((e, index) => <li key={index}>#{e.idCom} -- {e.mont}€</li>)}
+                        </ul>
+                    </div>
                     <label><u><strong>Modifier vos informations :</strong></u></label>
                     <span className='flex w-full h-fit justify-center gap-5'>
                         <input type='mail' placeholder='Votre nouveau mail' value={newMail} onChange={(e) => setNewMail(e.target.value)} className='w-1/2 h-7 bg-white text-black p-1' />

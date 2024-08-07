@@ -86,6 +86,7 @@ export default function Home() {
     <>
       <Head>
         <title>CyberNet - Accueil</title>
+        <link rel='icon' href='/logo.png' />
       </Head>
       <div className='w-screen h-screen flex flex-col font-sans bg-white'>
         <TopBar userMail={userMail} panier={panier} articleCherche={articleCherche} setArticleCherche={setArticleCherche} faireRecherche={faireChercher} panierVisible={panierVisible} setPanierVisible={setPanierVisible} />

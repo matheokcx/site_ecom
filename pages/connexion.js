@@ -37,12 +37,12 @@ export default function connexion() {
                 <title>CyberNet - Connexion au compte</title>
                 <link rel='icon' href='/logo.png' />
             </Head>
-            <div className='w-screen h-screen bg-blue-600 font-sans flex justify-center items-center'>
-                <div className='w-1/3 h-2/3 bg-white text-black rounded-lg flex flex-col items-center justify-center gap-12 p-4'>
+            <div className='w-screen h-screen bg-gradient-to-r from-blue-300 to-blue-800 font-sans flex justify-center items-center'>
+                <div className='w-1/3 h-2/3 bg-white bg-opacity-70 text-black rounded-lg flex flex-col items-center justify-center gap-12 p-4'>
                     <h2 className='font-bold text-2xl'>Connectez-vous</h2>
-                    <input type='mail' placeholder='Votre mail' value={mailInput} onChange={(e) => setMailInput(e.target.value)} className='w-2/3 h-7 border-2 border-gray-200 rounded-xl' />
-                    <input type='password' placeholder='Votre mot de passe' value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} className='w-2/3 h-7 border-2 border-gray-200 rounded-xl' />
-                    <button onClick={() => tenterConnexion()} className='bg-blue-600 rounded-lg w-1/3 h-fit text-white font-bold p-2'>Connexion</button>
+                    <input type='mail' placeholder='Votre mail' value={mailInput} onChange={(e) => setMailInput(e.target.value)} className='w-2/3 h-7 border-2 border-gray-400 rounded-xl p-1' />
+                    <input type='password' placeholder='Votre mot de passe' value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} className='w-2/3 h-7 border-2 border-gray-400 rounded-xl p-1' />
+                    <button onClick={() => tenterConnexion()} className='bg-blue-600 rounded-lg w-1/3 h-fit transition-transform hover:-translate-y-2 text-white font-bold p-2'>Connexion</button>
                 </div>
             </div>
         </>
