@@ -15,7 +15,7 @@ export default function Produit({ nomProduit, cheminPhotoProduit, prixProduit, p
                 <Image src={cheminPhotoProduit} width='80' height='80' className='w-4/5 h-2/6 rounded-lg' onClick={() => routeur.push(`/${nomProduit}`)} alt='image produit' />
                 <h3><strong>{nomProduit}</strong></h3>
                 <p>{prixProduit}€</p>
-                <button className='w-5/6 h-fit bg-red-300 text-white rounded-xl p-2' onClick={() => ajouterAuPanier()}>Ajouter au panier</button>
+                <button className='w-5/6 h-fit transition-colors hover:bg-red-600 bg-red-300 text-white rounded-xl p-2' onClick={() => ajouterAuPanier()}>Ajouter au panier</button>
             </div>
         </>
     )

@@ -47,13 +47,32 @@ export default function Home() {
     setProduits(response)
   }
 
+  const passerCommande = async () => {
+    const requete = await fetch('/api/creerCommande', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        produits: panier,
+        mailClient: userMail
+      })
+    })
+
+    if (!requete.ok) {
+      const retour = await requete.json()
+      alert(retour.message)
+    }
+    else {
+      const message = await requete.json()
+      console.log(message)
+      setPanier([])
+    }
+  }
+
   useEffect(() => {
     chargerProduits()
   }, [])
-
-  useEffect(() => {
-    console.log(panier)
-  }, [panier])
 
   return (
     <>
@@ -61,8 +80,8 @@ export default function Home() {
         <title>Boutique en ligne</title>
       </Head>
       <div className='w-screen h-screen flex flex-col font-sans bg-white'>
-        <TopBar articleCherche={articleCherche} setArticleCherche={setArticleCherche} faireRecherche={faireChercher} panierVisible={panierVisible} setPanierVisible={setPanierVisible} />
-        {panierVisible ? <Panier liste={panier} /> : null}
+        <TopBar panier={panier} articleCherche={articleCherche} setArticleCherche={setArticleCherche} faireRecherche={faireChercher} panierVisible={panierVisible} setPanierVisible={setPanierVisible} />
+        {panierVisible ? <Panier liste={panier} passerCommande={passerCommande} /> : null}
         <div className='h-5/6 w-full flex flex-row'>
           <div className='w-1/6 h-5/6 flex flex-col bg-blue-600 rounded-lg p-4 pt-4 mt-5 ml-2 gap-4'>
             <h3 className='w-full text-center'><strong>Filtres</strong></h3>
