@@ -11,7 +11,7 @@ export default function Produit({ element, panier, setPanier }) {
 
     return (
         <>
-            <div className='w-2/12 h-3/6 flex flex-col items-center gap-3 rounded-lg p-3 border-2 border-gray-400 border-solid text-black'>
+            <div className='w-3/8 lg:w-2/12 h-3/6 flex flex-col items-center gap-3 rounded-lg p-3 border-2 border-gray-400 border-solid text-black'>
                 <Image src={element.path} width='80' height='80' className='w-4/5 h-2/6 rounded-lg' onClick={() => routeur.push(`/${element.nom}`)} alt='image produit' />
                 <h3><strong>{element.nom}</strong></h3>
                 <p>{element.prix}€</p>

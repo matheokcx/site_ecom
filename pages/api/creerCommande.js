@@ -28,7 +28,7 @@ export default async function handle(req, res) {
             }
 
             if (soldeClient > sommeCommande) {
-                await bdd.execute('INSERT INTO commande (idCommande, idClient, montant) VALUES (?, ?, ?)', [idCommande, , idCli, sommeCommande])
+                await bdd.execute('INSERT INTO commande (idCommande, idClient, montant, dateCommande) VALUES (?, ?, ?, CURRENT_DATE())', [idCommande, , idCli, sommeCommande])
 
                 // Sauvegarde des produits commandés
                 for (let i = 0; i < produits.length; i++) {

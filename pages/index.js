@@ -1,14 +1,14 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import TopBar from '../components/TopBar'
 import Produit from '../components/Produit'
 import Panier from '../components/Panier'
-import { useRouter } from 'next/router'
 
 export default function Home() {
 
   const routeur = useRouter()
-  const [articleCherche, setArticleCherche] = useState("")
+  const [produitCherche, setProduitCherche] = useState("")
 
   const [produits, setProduits] = useState([])
 
@@ -21,7 +21,7 @@ export default function Home() {
 
   const userMail = routeur.query.mail
 
-  // Fonction requetes API ____________________________________________________
+  // Fonction requetes API ___________________________________________________________________________
 
   const chargerProduits = async () => {
     const requete = await fetch('/api/chargerProduits')
@@ -43,8 +43,8 @@ export default function Home() {
     setProduits(produitsFiltres)
   }
 
-  const faireChercher = async () => {
-    const requete = await fetch(`/api/chercherProduit?recherche=${articleCherche}`)
+  const faireRecherche = async () => {
+    const requete = await fetch(`/api/chercherProduit?recherche=${produitCherche}`)
     const response = await requete.json()
     setProduits(response)
   }
@@ -72,6 +72,8 @@ export default function Home() {
     }
   }
 
+  // Automatisations _________________________________________________________________________________
+
   useEffect(() => {
     chargerProduits()
   }, [])
@@ -82,6 +84,7 @@ export default function Home() {
     }
   }, [panier])
 
+
   return (
     <>
       <Head>
@@ -89,10 +92,10 @@ export default function Home() {
         <link rel='icon' href='/logo.png' />
       </Head>
       <div className='w-screen h-screen flex flex-col font-sans bg-white'>
-        <TopBar userMail={userMail} panier={panier} articleCherche={articleCherche} setArticleCherche={setArticleCherche} faireRecherche={faireChercher} panierVisible={panierVisible} setPanierVisible={setPanierVisible} />
+        <TopBar userMail={userMail} panier={panier} passerCommande={passerCommande} montantPanier={montantPanier} setMontantPanier={setMontantPanier} articleCherche={produitCherche} setProduitCherche={setProduitCherche} faireRecherche={faireRecherche} panierVisible={panierVisible} setPanierVisible={setPanierVisible} />
         {panierVisible ? <Panier liste={panier} passerCommande={passerCommande} montantPanier={montantPanier} setMontantPanier={setMontantPanier} /> : null}
-        <div className='h-5/6 w-full flex flex-row'>
-          <div className='w-1/6 h-5/6 flex flex-col bg-blue-600 rounded-lg p-4 pt-4 mt-5 ml-2 gap-4'>
+        <div className='h-5/6 w-full flex flex-col overflow-y-auto lg:flex-row'>
+          <div className='w-full lg:w-1/6 h-3/6 lg:h-5/6 flex flex-col bg-blue-600 rounded-lg p-4 pt-4 mt-5 lg:ml-2 gap-4'>
             <h3 className='w-full text-center'><strong>Filtres</strong></h3>
             <label><u><strong>Prix :</strong></u></label>
             <span className='flex flex-row gap-2'>
@@ -107,7 +110,7 @@ export default function Home() {
               <button className='bg-white bg-opacity-55 w-1/2 h-fit rounded-lg text-black p-1 hover:scale-105 hover:bg-white transition-transform' onClick={() => appliquerFiltres()}>Appliquer</button>
             </span>
           </div>
-          <div className='w-5/6 h-full flex flex-row flex-wrap gap-3 pl-5 pt-5'>
+          <div className='w-full lg:w-5/6 h-full flex flex-col lg:flex-row flex-wrap gap-3 lg:pl-5 pt-5'>
             {produits.map((e, index) => <Produit element={e} key={index} panier={panier} setPanier={setPanier} />)}
           </div>
         </div>
