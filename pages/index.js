@@ -110,8 +110,8 @@ export default function Home() {
               <button className='bg-white bg-opacity-55 w-1/2 h-fit rounded-lg text-black p-1 hover:scale-105 hover:bg-white transition-transform' onClick={() => appliquerFiltres()}>Appliquer</button>
             </span>
           </div>
-          <div className='w-full lg:w-5/6 h-full flex flex-col lg:flex-row flex-wrap gap-3 lg:pl-5 pt-5'>
-            {produits.map((e, index) => <Produit element={e} key={index} panier={panier} setPanier={setPanier} />)}
+          <div className='w-full lg:w-5/6 h-full flex flex-col lg:flex-row gap-3 lg:pl-5 pt-5 p-4'>
+            {produits.map((e, index) => <Produit mail={userMail} element={e} key={index} panier={panier} setPanier={setPanier} />)}
           </div>
         </div>
       </div>

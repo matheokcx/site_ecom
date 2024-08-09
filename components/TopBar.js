@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-export default function TopBar({ panierMort, articleCherche, setProduitCherche, faireRecherche, panierVisible, setPanierVisible, panier, userMail }) {
+export default function TopBar({ articleCherche, setProduitCherche, faireRecherche, panierVisible, setPanierVisible, panier, userMail }) {
 
     const routeur = useRouter()
 
