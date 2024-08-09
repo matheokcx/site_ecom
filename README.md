@@ -1,40 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Boutique en ligne Techs
 
-## Getting Started
+_/!\ Ce projet n'est pas réellement terminé puisqu'il y a toujours quelque chose à ajouter (comme la possibilité de mettre des avis ou de voir le détail d'une commande) mais il est à un stade correct /!\ ._
 
-First, run the development server:
+![](/public/c0.png)
+
+## Description :
+
+Il s'agit d'une boutique en ligne de produits high-techs nommé "CyberNet", qui propose de tout, en passant par des composants d'ordinateurs, des téléviseurs ou encore des webcams !
+
+Les outils utilisés pour réaliser ce site sont : 
+
+- NextJs (Framework ReactJs)
+- Tailwindcss (Framework Css)
+- MAMP (Serveur)
+- React (FrontEnd)
+- NodeJS (BackEnd)
+
+## Quelques images :
+
+![img1](/public/c1.png)
+
+--> Page de connexion
+
+![img2](/public/c2.png)
+
+--> Page principal
+
+![img3](/public/c3.png)
+
+--> Page principal sous mobile
+
+![img4](/public/c4.png)
+
+--> Page détaillée d'un produit
+
+![img5](/public/c5.png)
+
+--> Page profil client
+
+## Les fonctionnalités : 
+
+_*Liste non-exhaustive_
+
+- Créer un compte client & se connecter/déconnecter avec
+- Ajouter un article au panier / retirer un article du panier
+- Voir la fiche descriptive du produit
+- Passer une commande / suivre l'avancée de la commande (sur la section dédiée sur le profil)
+- Chercher un produit en fonction du nom et de critères (prix uniquement pour le moment)
+- Responsibe mobile
+- Système de solde interne
+- Possibilité de pouvoir modifier les informations du compte (mail et mot de passe)
+
+## Futur du projet :
+
+Ce projet n'est pas obligatoirement à l'abandon. Il subira des modifications au cours du temps (donc ne prenez pas les images au dessus comme définitives).
+
+Comme dit au début, il serait cool de pouvoir mettre un avis sur un produit que l'on a commandé, ou encore pouvoir approvisionner son solde avec une CB par exemple puis avoir des critères plus fins (catégories, date de sortie...) et pour finir un système de promotions seraient de bonnes features (je sais ça fait beaucoup :_) )
+
+## Télécharger le code source :
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+$> cd votre/repertoire/de/travail
+$> git init
+$> git clone https://github.com/matheokcx/site_ecom.git
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
